@@ -39,22 +39,44 @@ public class HomeFragment extends Fragment {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_main_menu_home);
+    public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_main_menu_home , container, false);
 
+        Locale.setDefault(Locale.KOREAN);
+
+        mCalender = new GregorianCalendar();
+
+        TextView tv_Date = rootView.findViewById(R.id.tv_date);
+        tv_Date.setText(getToday());
+
+        mTvResult = rootView.findViewById(R.id.tv_result);
+
+        View.OnClickListener clickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final int year = mCalender.get(Calendar.YEAR);
+                final int month = mCalender.get(Calendar.MONTH);
+                final int day = mCalender.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(requireContext(), mDateSetListener, year, month, day);
+                dialog.show();
+            }
+        };
+        rootView.findViewById(R.id.btn_input_date).setOnClickListener(clickListener);
+
+        return rootView;
 
     }
 
     private String getToday(){
-        final String strFormat = getString(R:string.format_today);
+        final String strFormat = getString(R.string.format_today);
         SimpleDateFormat CurDateFormat = new SimpleDateFormat(strFormat);
         return CurDateFormat.format(mCalender.getTime());
     }
 
     private String getDay(int year, int month, int dayOfMonth) {
 
-        final Calendar ddayCalendr Calendar.getInstance();
+        final Calendar ddayCalendr = Calendar.getInstance();
         ddayCalendr.set(year,month,dayOfMonth);
 
 
@@ -62,9 +84,11 @@ public class HomeFragment extends Fragment {
         final long today = Calendar.getInstance().getTimeInMillis() / ONE_DAY;
         long result = dday - today;
 
+
+
         final String strFormat;
         if(result>0){
-            strFormat = "D+%d";
+            strFormat = "D-%d";
         } else if (result==0) {
             strFormat = "D-Day";
         } else{
@@ -76,37 +100,5 @@ public class HomeFragment extends Fragment {
         return strCount;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedinstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main_menu_home, container, false);
 
-        //D-day 보여주기
-        mTvResult = rootView.findViewByld(R.id.tv_result);
-
-        //한국어 설정
-        Locale.setDefault(Locale.KOREAN);
-
-        //현재 날짜를 알기 위해 사용
-        mCalender = new GregorianCalendar();
-
-        //Today 보여주기
-        TextView tvDate = container.findViewById(R.id.tv_date);
-        tvDate.setText(getToday());
-
-
-
-        View.OnClickListener clickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final int year = mCalender.get((Calendar.YEAR));
-                final int month = mCalender.get(Calendar.MONTH);
-                final int day = mCalender.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog(HomeFragment.this, mDateSetListener, year,month,day);
-                dialog.show();
-            }
-        };
-        findViewByldId(R.id.btn_input_date).setOnclickListener(clickListener);
-        return
-    }
 }
