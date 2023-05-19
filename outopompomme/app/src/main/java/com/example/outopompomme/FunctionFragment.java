@@ -16,18 +16,42 @@ public class FunctionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_menu_function, container, false);
 
+        Button give_water_btn = rootView.findViewById(R.id.give_water_btn);
+        Button light_btn = rootView.findViewById(R.id.light_btn);
+        Button open_door_btn = rootView.findViewById(R.id.open_door_btn);
+        Button watter_box_btn = rootView.findViewById(R.id.watter_box_btn);
 
-        View.OnClickListener clickListener = new View.OnClickListener() {
+        give_water_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getActivity(), GivewaterActivity.class);
                 startActivity(intent);
             }
-        };
+        });
 
-        Button button = rootView.findViewById(R.id.give_water_btn);
-        button.setOnClickListener(clickListener);
+        light_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LightActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        open_door_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), OpendoorActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        watter_box_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), WatertanckActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }

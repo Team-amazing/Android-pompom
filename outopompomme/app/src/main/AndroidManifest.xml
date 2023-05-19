@@ -11,6 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OutoPompomme"
         tools:targetApi="31">
+        <activity
+            android:name=".WatertanckActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OpendoorActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/soild_button" />
@@ -24,10 +31,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".GivewaterActivity"
-            android:exported="false"/>
+            android:exported="false" />
+        <activity
+            android:name=".LightActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
