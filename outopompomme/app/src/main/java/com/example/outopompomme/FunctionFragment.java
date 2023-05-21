@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment;
 
 
 public class FunctionFragment extends Fragment {
-
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_menu_function, container, false);
 
@@ -52,9 +50,6 @@ public class FunctionFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return rootView;
     }
-
-
 }
