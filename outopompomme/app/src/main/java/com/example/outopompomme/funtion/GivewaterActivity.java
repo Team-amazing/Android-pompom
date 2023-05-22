@@ -1,8 +1,10 @@
-package com.example.outopompomme;
+package com.example.outopompomme.funtion;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.outopompomme.R;
 
 public class GivewaterActivity extends AppCompatActivity {
     @Override

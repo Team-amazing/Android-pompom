@@ -1,4 +1,4 @@
-package com.example.outopompomme;
+package com.example.outopompomme.home;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -16,6 +16,9 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.example.outopompomme.DiaryActivity;
+import com.example.outopompomme.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

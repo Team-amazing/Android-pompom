@@ -15,10 +15,10 @@
             android:name=".DiaryActivity"
             android:exported="false" />
         <activity
-            android:name=".WatertanckActivity"
+            android:name=".funtion.WatertanckActivity"
             android:exported="false" />
         <activity
-            android:name=".OpendoorActivity"
+            android:name=".funtion.OpendoorActivity"
             android:exported="false" />
 
         <meta-data
@@ -35,10 +35,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GivewaterActivity"
+            android:name=".funtion.GivewaterActivity"
             android:exported="false" />
         <activity
-            android:name=".LightActivity"
+            android:name=".funtion.LightActivity"
             android:exported="false" />
     </application>
 

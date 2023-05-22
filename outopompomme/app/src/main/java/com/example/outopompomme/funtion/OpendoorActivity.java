@@ -1,8 +1,10 @@
-package com.example.outopompomme;
+package com.example.outopompomme.funtion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.outopompomme.R;
 
 public class OpendoorActivity extends AppCompatActivity {
 
