@@ -3,6 +3,6 @@
 
     <item
         android:drawable="@drawable/baseline_menu_24"
-        android:height="40dp"
-        android:width="40dp" />
+        android:height="50dp"
+        android:width="50dp" />
 </layer-list>
