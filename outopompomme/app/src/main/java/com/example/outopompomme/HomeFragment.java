@@ -2,6 +2,7 @@ package com.example.outopompomme;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.audiofx.Visualizer;
 import android.os.Bundle;
 
@@ -10,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,6 +54,15 @@ public class HomeFragment extends Fragment {
         tv_Date.setText(getToday());
 
         mTvResult = rootView.findViewById(R.id.tv_result);
+
+        ImageView iconImageView = rootView.findViewById(R.id.menu_btn);
+        iconImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DiaryActivity.class);
+                startActivity(intent);
+            }
+        });
 
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InfoFragment"
-    android:background="@color/whitegray">
+    android:background="@color/white_gray">
 
 
     <ScrollView
@@ -33,6 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="상추"
+                    android:textColor="@color/black"
                     android:textSize="30dp"/>
             </LinearLayout>
 
@@ -48,13 +49,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="가꾸기 팁"
+                    android:textColor="@color/black"
                     android:textSize="20dp"
                     android:drawableLeft="@drawable/tip"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lettuce_tip" />
+                    android:text="@string/lettuce_tip"
+                    android:textColor="@color/black"/>
 
 
             </LinearLayout>
@@ -71,13 +74,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="요리 레시피"
+                    android:textColor="@color/black"
                     android:textSize="20dp"
                     android:drawableLeft="@drawable/cooking"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lettuce_cook_menu" />
+                    android:text="@string/lettuce_cook_menu"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -93,13 +98,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="종 설명"
+                    android:textColor="@color/black"
                     android:textSize="20dp"
                     android:drawableLeft="@drawable/grass"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lettuce_species_description" />
+                    android:text="@string/lettuce_species_description"
+                    android:textColor="@color/black"/>
 
 
 

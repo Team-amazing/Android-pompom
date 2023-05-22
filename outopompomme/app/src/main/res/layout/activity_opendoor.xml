@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OpendoorActivity">
+    tools:context=".OpendoorActivity"
+    android:background="@color/white_gray">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="문 열기"
+        android:textColor="@color/black"
         android:textSize="60dp"
         android:layout_marginTop="300dp"
         app:layout_constraintLeft_toLeftOf="parent"
