@@ -73,9 +73,9 @@ public class InfoFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == Activity.RESULT_OK && requestCode == GALLERY_REQUEST_CODE) {
-            Uri selectedImageUriUri = data.getData();
-            if (selectedImageUriUri != null) {
-                ivProfile.setImageURI(selectedImageUriUri);
+            Uri selectedImageUri = data.getData();
+            if (selectedImageUri != null) {
+                ivProfile.setImageURI(selectedImageUri);
             } else {
                 Toast.makeText(requireContext(), "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
             }
