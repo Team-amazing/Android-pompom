@@ -40,6 +40,12 @@
         <activity
             android:name=".funtion.LightActivity"
             android:exported="false" />
+        <activity
+            android:name=".home.MypageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PlantTypesActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.outopompomme.funtion.FunctionFragment;
+import com.example.outopompomme.home.HomeFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {

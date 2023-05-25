@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
         iconImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DiaryActivity.class);
+                Intent intent = new Intent(getActivity(), MypageActivity.class);
                 startActivity(intent);
             }
         });
