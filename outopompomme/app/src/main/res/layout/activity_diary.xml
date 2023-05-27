@@ -21,12 +21,12 @@
     <CalendarView
 
         android:id="@+id/calendarView"
+        style="@style/CustomCalendarViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:datePickerMode="calendar"
         android:background="@color/white"
-        android:monthTextAppearance="@style/CustomDateTextAppearance"
         android:weekDayTextAppearance="@style/CustomDateTextAppearance"
         android:dateTextAppearance="@style/CustomDateTextAppearance"
         app:layout_constraintLeft_toLeftOf="parent"
