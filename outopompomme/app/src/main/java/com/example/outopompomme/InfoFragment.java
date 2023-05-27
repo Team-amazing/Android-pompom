@@ -36,7 +36,7 @@ public class InfoFragment extends Fragment {
     }
 
     private void initImageViewProfile() {
-        ivProfile = requireView().findViewById(R.id.ivProfile);
+        ivProfile = requireView().findViewById(R.id.ivProfile_1);
 
         ivProfile.setOnClickListener(v ->{
             if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
