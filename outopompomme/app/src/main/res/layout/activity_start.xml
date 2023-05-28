@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartActivity"
+    android:background="@color/white">
+
+    <Button
+        android:id="@+id/start_start_btn"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="시작하기"
+        android:textColor="@color/black"
+        android:background="@color/green"
+        android:layout_marginTop="500dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/start_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이미 계정이 있나요?"
+        android:textColor="@color/gray"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/start_start_btn" />
+
+    <TextView
+        android:id="@+id/start_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="로그인"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/green"
+        app:layout_constraintLeft_toRightOf="@id/start_question"
+        app:layout_constraintTop_toBottomOf="@id/start_start_btn"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
