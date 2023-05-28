@@ -3,6 +3,7 @@ package com.example.outopompomme;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,7 +29,8 @@ public class SignUpActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.signupBtn);
+        findViewById(R.id.signupBtn).setOnClickListener(onClickListener);
+        findViewById(R.id.gotoLogin).setOnClickListener(onClickListener);
     }
     @Override
     public void onStart() {
@@ -36,7 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            reload();
+            currentUser.reload();
         }
     }
 
@@ -47,6 +49,9 @@ public class SignUpActivity extends AppCompatActivity {
                 case R.id.signupBtn:
                     signUp();
                     break;
+                case R.id.gotoLogin:
+                    startLoginActivity();
+                    break;
             }
         }
     };
@@ -55,24 +60,48 @@ public class SignUpActivity extends AppCompatActivity {
     private void signUp() {
         String email = ((EditText)findViewById(R.id.signup_EmailAddress)).getText().toString();
         String password = ((EditText)findViewById(R.id.signup_password)).getText().toString();
+        String signup_check_password = ((EditText)findViewById(R.id.signup_check_password)).getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            //Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
-                                    //Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
-                        }
-                    }
-                });
+        if(email.length() >0&& password.length() >0 && signup_check_password.length() >0){
+            if(password.equals(signup_check_password)) {
+
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    strtToast("회원가입이 성공적으로 되었습니다.");
+
+
+
+                                } else {
+                                    if(task.getException() != null){
+                                        strtToast(task.getException().toString());
+
+                                    }
+                                }
+                            }
+                        });
+            }else{
+                strtToast("비밀번호가 일치하지 않습니다.");
+            }
+        }else{
+            strtToast("이메일 또는 비밀번호를 입력하세요");
+        }
+
+
     }
+
+    private void strtToast(String msg) {
+        Toast.makeText(this, msg , Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void startLoginActivity() {
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+
 }
