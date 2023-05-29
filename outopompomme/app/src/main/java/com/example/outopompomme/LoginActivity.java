@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 startToast("로그인에 성공했습니다.");
-                                finish();
+                                myStartActivity(MainActivity.class);
                             } else {
                                 if (task.getException() != null) {
                                     startToast(task.getException().toString());
@@ -76,9 +76,10 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private void myStartActivity(Class c) {
-        Intent intent = new Intent(LoginActivity.this, c);
-        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+    private void myStartActivity(Class<?> cls) {
+        Intent intent = new Intent(LoginActivity.this, cls);
+        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 }
