@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpActivity extends AppCompatActivity {
-    private static final String TAG = "SignUpActivity";
     private FirebaseAuth mAuth;
 
 
@@ -58,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
                     signUp();
                     break;
                 case R.id.gotoLogin:
-                    startLoginActivity();
+                    myStartActivity(LoginActivity.class);
                     break;
             }
         }
@@ -80,7 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     strtToast("회원가입이 성공적으로 되었습니다.");
-
+                                    myStartActivity(MainActivity.class);
 
 
                                 } else {
@@ -106,10 +104,12 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    private void startLoginActivity() {
+    private void myStartActivity(Class c) {
         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);
     }
+
+
 
 
 }
