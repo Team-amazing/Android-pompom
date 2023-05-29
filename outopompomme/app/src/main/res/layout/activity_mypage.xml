@@ -117,7 +117,20 @@
             app:layout_constraintTop_toBottomOf="@id/mypage_daiary_btn"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <Button
+        android:id="@+id/mypage_logoutBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="로그아웃"
+        android:background="@color/red"
+        android:layout_marginTop="300dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mypage_linear3"/>
 
 
 

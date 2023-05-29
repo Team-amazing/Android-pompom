@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.outopompomme.DiaryActivity;
+import com.example.outopompomme.MainActivity;
 import com.example.outopompomme.R;
+import com.example.outopompomme.StartActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MypageActivity extends AppCompatActivity {
 
@@ -19,6 +22,9 @@ public class MypageActivity extends AppCompatActivity {
 
         Button mypage_daiary_btn = findViewById(R.id.mypage_daiary_btn);
 
+        findViewById(R.id.mypage_logoutBtn).setOnClickListener(onClickListener);
+
+
         mypage_daiary_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,5 +33,22 @@ public class MypageActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.mypage_logoutBtn:
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity();
+                    break;
+            }
+        }
+    };
+
+    private void startActivity() {
+        Intent intent = new Intent(MypageActivity.this, StartActivity.class);
+        startActivity(intent);
     }
 }
