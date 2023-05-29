@@ -87,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void gotoMainActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }
