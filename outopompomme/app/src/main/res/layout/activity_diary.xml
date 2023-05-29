@@ -10,21 +10,31 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:text="다이어리"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="25dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <CalendarView
+    <ImageButton
+        android:id="@+id/diary_backkey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_left"
+        android:background="@color/white_gray"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
+    <CalendarView
         android:id="@+id/calendarView"
         style="@style/CustomCalendarViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:datePickerMode="calendar"
         android:background="@color/white"
         android:weekDayTextAppearance="@style/CustomDateTextAppearance"
