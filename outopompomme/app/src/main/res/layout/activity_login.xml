@@ -52,7 +52,7 @@
     <Button
         android:id="@+id/login_loginBtn"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:text="로그인"
         android:textColor="@color/black"
         android:background="@color/green"
@@ -60,6 +60,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_password"/>
+
+    <Button
+        android:id="@+id/login_passwordresetBtn"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:text="비밀번호 재설정"
+        android:background="@color/gray"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_loginBtn"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
