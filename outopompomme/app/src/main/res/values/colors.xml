@@ -11,4 +11,5 @@
     <color name="white_gray">#D3D3D3</color>
     <color name="green">#00FF80</color>
     <color name="calendar_number_color">#FF000000</color>
+    <color name="red">#FF0000</color>
 </resources>

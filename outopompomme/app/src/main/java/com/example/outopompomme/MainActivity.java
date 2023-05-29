@@ -1,14 +1,17 @@
 package com.example.outopompomme;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.outopompomme.funtion.FunctionFragment;
 import com.example.outopompomme.home.HomeFragment;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
+            startActivity();
+        }
+
 
         homeFragment = new HomeFragment();
         functionFragment = new FunctionFragment();
@@ -52,5 +60,12 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+
+
+    private void startActivity() {
+        Intent intent = new Intent(MainActivity.this, StartActivity.class);
+        startActivity(intent);
     }
 }
