@@ -32,6 +32,14 @@ public class SignUpActivity extends AppCompatActivity {
         findViewById(R.id.signupBtn).setOnClickListener(onClickListener);
         findViewById(R.id.gotoLogin).setOnClickListener(onClickListener);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
     @Override
     public void onStart() {
         super.onStart();
