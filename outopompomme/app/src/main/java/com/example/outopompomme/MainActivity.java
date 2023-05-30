@@ -1,6 +1,7 @@
 package com.example.outopompomme;
 
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -68,4 +69,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, StartActivity.class);
         startActivity(intent);
     }
+
+
 }
