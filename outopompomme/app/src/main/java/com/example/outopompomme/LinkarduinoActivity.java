@@ -12,9 +12,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,6 +39,7 @@ public class LinkarduinoActivity extends AppCompatActivity {
     TextView textStatus;
     Button btnParied, btnSearch, btnSend;
     ListView listView;
+
 
     Set<BluetoothDevice> pairedDevices;
     ArrayAdapter<String> btArrayAdapter;
@@ -76,7 +80,7 @@ public class LinkarduinoActivity extends AppCompatActivity {
         btnSend = (Button) findViewById(R.id.sendBtn);
         listView = (ListView) findViewById(R.id.link_listview);
 
-        btArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        btArrayAdapter = new ArrayAdapter<>(this, R.layout.link_list_type);
         deviceAddressArray = new ArrayList<>();
         listView.setAdapter(btArrayAdapter);
 
@@ -106,11 +110,9 @@ public class LinkarduinoActivity extends AppCompatActivity {
     }
 
     public void onClickButtonPaired(View view) {
-        Log.d("장치연결", "fhgftyuyuydfyu");
         btArrayAdapter.clear();
         if (deviceAddressArray != null && deviceAddressArray.isEmpty()) {
             deviceAddressArray.clear();
-            Log.d("1","1");
         }
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -187,6 +189,7 @@ public class LinkarduinoActivity extends AppCompatActivity {
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
+            Log.d("TEST", "ㄴ댜러냗러ㅑ넏랴ㅑㅑㅓㅑ");
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Discovery has found a device. Get the BluetoothDevice
