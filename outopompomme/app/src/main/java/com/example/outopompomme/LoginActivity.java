@@ -3,6 +3,7 @@ package com.example.outopompomme;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
                 case R.id.login_loginBtn:
                     logIn();
                     break;
-                case R.id.login_passwordresetBtn:
+                case R.id.login_passwordresetTv:
                     myStartActivity(MyinfoActivity.class);
                     break;
             }
@@ -42,7 +43,17 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.login_loginBtn).setOnClickListener(onClickListener);
-        findViewById(R.id.login_passwordresetBtn).setOnClickListener(onClickListener);
+        findViewById(R.id.login_passwordresetTv).setOnClickListener(onClickListener);
+
+        Button login_signupBtn =  findViewById(R.id.login_signupBtn);
+
+        login_signupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void logIn() {
