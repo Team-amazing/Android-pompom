@@ -6,13 +6,48 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.outopompomme.ApiTest;
 import com.example.outopompomme.R;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.concurrent.Executors;
 
 
 public class FunctionFragment extends Fragment {
+
+    private ApiTest at;
+
+
+
+    public FunctionFragment(){
+
+    }
+
+    //api연동
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        at = new ApiTest();
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    at.func();
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_menu_function, container, false);
 
@@ -20,6 +55,8 @@ public class FunctionFragment extends Fragment {
         Button light_btn = rootView.findViewById(R.id.light_btn);
         Button open_door_btn = rootView.findViewById(R.id.open_door_btn);
         Button watter_box_btn = rootView.findViewById(R.id.watter_box_btn);
+
+
 
         give_water_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,5 +90,7 @@ public class FunctionFragment extends Fragment {
             }
         });
         return rootView;
+
     }
+
 }
