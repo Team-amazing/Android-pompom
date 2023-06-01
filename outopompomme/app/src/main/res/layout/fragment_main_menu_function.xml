@@ -21,6 +21,13 @@
     <!--            android:orientation="vertical" />-->
     <!--    </ScrollView>-->
 
+    <TextView
+        android:id="@+id/funtion_weatherTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <Button
         android:id="@+id/give_water_btn"
         android:layout_width="160dp"
