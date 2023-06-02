@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewWeatherAdapter extends RecyclerView.Adapter<RecyclerViewWeatherAdapter.ViewHolder> {
+public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView weather_itemIv;
         TextView weather_location_itemTv;
@@ -33,7 +33,7 @@ public class RecyclerViewWeatherAdapter extends RecyclerView.Adapter<RecyclerVie
 
     private ArrayList<RecyclerViewWeatherItem> mList;
 
-    public RecyclerViewWeatherAdapter(ArrayList<RecyclerViewWeatherItem> mList) {
+    public WeatherAdapter(ArrayList<RecyclerViewWeatherItem> mList) {
         this.mList = mList;
     }
 
@@ -44,12 +44,12 @@ public class RecyclerViewWeatherAdapter extends RecyclerView.Adapter<RecyclerVie
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = inflater.inflate(R.layout.fragment_wheather_item, parent, false);
-        RecyclerViewWeatherAdapter.ViewHolder vh = new RecyclerViewWeatherAdapter.ViewHolder(view);
+        WeatherAdapter.ViewHolder vh = new WeatherAdapter.ViewHolder(view);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewWeatherAdapter.ViewHolder holder, int position){
+    public void onBindViewHolder(@NonNull WeatherAdapter.ViewHolder holder, int position){
         RecyclerViewWeatherItem item = mList.get(position);
 
         holder.weather_itemIv.setImageResource(R.drawable.partly_cloudy);
