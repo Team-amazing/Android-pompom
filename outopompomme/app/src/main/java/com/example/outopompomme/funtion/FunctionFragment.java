@@ -6,31 +6,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.outopompomme.ApiTest;
 import com.example.outopompomme.R;
-import com.example.outopompomme.RecyclerViewWeatherAdapter;
 import com.example.outopompomme.RecyclerViewWeatherItem;
+import com.example.outopompomme.WeatherAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 
 
 public class FunctionFragment extends Fragment {
 
     private ApiTest at;
-
-    private RecyclerView mRecyclerView;
-    private ArrayList<RecyclerViewWeatherItem> mList;
-    private RecyclerViewWeatherAdapter mRecyclerViewAdapter;
     private Button give_water_btn;
     private Button light_btn;
     private Button open_door_btn;
     private Button water_box_btn;
+
+    private ViewPager2 mViewPager;
+    private ArrayList<RecyclerViewWeatherItem> mList;
+    private WeatherAdapter weatherAdapter;
+
+
 
     //api연동
     @Override
@@ -94,20 +100,29 @@ public class FunctionFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceSate) {
-        super.onViewCreated(view, savedInstanceSate);
+    public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstance){
+        super.onViewCreated(view, savedInstance);
 
-        mRecyclerView = view.findViewById(R.id.weather_recyclerView);
-        mList = new ArrayList<>();
+        firstTint();
 
-        for (int i = 0; i < 7; i++) {
+        for(int i=0;i<7;i++){
             addItem("DAEJEON", "iconName", "16°C", "WEDNESDAY", "15:37 PM");
         }
 
-        mRecyclerViewAdapter = new RecyclerViewWeatherAdapter(mList);
-        mRecyclerView.setAdapter(mRecyclerViewAdapter);
-        //RecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        mViewPager = view.findViewById(R.id.viewpager);
+        weatherAdapter = new WeatherAdapter(mList);
+        mViewPager.setAdapter(weatherAdapter);
+        mViewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+        //layoutManager.setOrientation(ViewPager2.HORIZONTAL);
+        ViewPager2 mviewPager = view.findViewById(R.id.viewpager);
+        mviewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+        mviewPager.setAdapter(weatherAdapter);
+    }
+
+    public void firstTint() {
+        mList = new ArrayList<>();
     }
 
     public void addItem(String locationText, String imgName, String tempText, String weekText, String timeText) {
@@ -121,5 +136,7 @@ public class FunctionFragment extends Fragment {
 
         mList.add(item);
     }
+
+
 
 }
