@@ -1,18 +1,19 @@
 package com.example.outopompomme;
 
 
-import android.Manifest;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.outopompomme.funtion.FunctionFragment;
 import com.example.outopompomme.home.HomeFragment;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,8 +28,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
-            startActivity();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user == null) {
+            startActivity(MyinfoActivity .class);
+        }else{
+            for (UserInfo profile : user.getProviderData()) {
+                // Name, email address, and profile photo Url
+                String name = profile.getDisplayName();
+                String email = profile.getEmail();
+                Uri photoUrl = profile.getPhotoUrl();
+            }
+
         }
 
 
@@ -65,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void startActivity() {
+    private void startActivity(Class<MyinfoActivity> myinfoActivityClass) {
         Intent intent = new Intent(MainActivity.this, StartActivity.class);
         startActivity(intent);
     }
