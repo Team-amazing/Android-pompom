@@ -20,7 +20,7 @@
         android:id="@+id/music"
         android:enabled="true"
         android:icon="@drawable/baseline_music_note_24"
-        android:title="음악"
+        android:title="커뮤니티"
         app:showAsAction="always" />
 
     <item
