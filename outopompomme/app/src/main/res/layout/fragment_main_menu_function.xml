@@ -21,6 +21,14 @@
     <!--            android:orientation="vertical" />-->
     <!--    </ScrollView>-->
 
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
     <TextView
         android:id="@+id/funtion_weatherTv"
         android:layout_width="wrap_content"
