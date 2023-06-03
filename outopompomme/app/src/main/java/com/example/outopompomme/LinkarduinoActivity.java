@@ -2,28 +2,34 @@ package com.example.outopompomme;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.outopompomme.bluetooth.BluetoothDataListener;
+import com.example.outopompomme.bluetooth.BluetoothDataReceiver;
+import com.example.outopompomme.bluetooth.MyBluetoothManager;
+import com.example.outopompomme.funtion.FunctionFragment;
+import com.example.outopompomme.home.MypageActivity;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -31,10 +37,14 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
-public class LinkarduinoActivity extends AppCompatActivity {
+public class LinkarduinoActivity extends AppCompatActivity implements BluetoothDataListener {
 
     private static final UUID BT_MODULE_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // "random" unique identifier
 
+    private MyBluetoothManager myBluetoothManager;
+    private BluetoothDataReceiver bluetoothDataReceiver;
+
+    private LinkarduinoActivity linkarduinoActivity;
 
     TextView textStatus;
     Button btnParied, btnSearch, btnSend;
@@ -56,6 +66,19 @@ public class LinkarduinoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_linkarduino);
+
+        linkarduinoActivity = new LinkarduinoActivity();
+        bluetoothDataReceiver = new BluetoothDataReceiver(linkarduinoActivity);
+
+        ImageButton link_backkey = findViewById(R.id.link_backkey);
+
+        link_backkey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LinkarduinoActivity.this, MypageActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         btAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -106,6 +129,12 @@ public class LinkarduinoActivity extends AppCompatActivity {
                 onClickButtonSend(v);
             }
         });
+
+        myBluetoothManager = new MyBluetoothManager(this);
+        bluetoothDataReceiver = new BluetoothDataReceiver(this);
+
+        myBluetoothManager.connectToDevice();
+        myBluetoothManager.startDataListening();
 
     }
 
@@ -189,7 +218,6 @@ public class LinkarduinoActivity extends AppCompatActivity {
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
-            Log.d("TEST", "ㄴ댜러냗러ㅑ넏랴ㅑㅑㅓㅑ");
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Discovery has found a device. Get the BluetoothDevice
@@ -214,12 +242,22 @@ public class LinkarduinoActivity extends AppCompatActivity {
         }
     };
 
+    public void onDataReceived(String data){
+        FunctionFragment functionFragment= (FunctionFragment) getSupportFragmentManager().findFragmentByTag("FuntionFragment_tag");
+        if(functionFragment != null){
+            functionFragment.updateSensorData(data);
+        }
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
         // Don't forget to unregister the ACTION_FOUND receiver.
         unregisterReceiver(receiver);
+
+        myBluetoothManager.disconnect();
+        bluetoothDataReceiver.stopListening();
     }
 
     public class myOnItemClickListener implements AdapterView.OnItemClickListener {
@@ -267,7 +305,7 @@ public class LinkarduinoActivity extends AppCompatActivity {
 
     public void onClickButtonSend(View view) {
         if (connectedThread != null) {
-            connectedThread.write("a");
+            connectedThread.write("1");
         }
     }
 
