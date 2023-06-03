@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -36,6 +37,13 @@ public class FunctionFragment extends Fragment {
     private ArrayList<RecyclerViewWeatherItem> mList;
     private WeatherAdapter weatherAdapter;
 
+    private TextView temperatureTextView;
+    private TextView humidityTextView;
+
+    public FunctionFragment() {
+        // Required empty public constructor
+    }
+
 
 
     //api연동
@@ -62,6 +70,9 @@ public class FunctionFragment extends Fragment {
         light_btn = rootView.findViewById(R.id.light_btn);
         open_door_btn = rootView.findViewById(R.id.open_door_btn);
         water_box_btn = rootView.findViewById(R.id.watter_box_btn);
+
+        temperatureTextView = rootView.findViewById(R.id.funtion_RealtempTv);
+        humidityTextView = rootView.findViewById(R.id.funtion_real_humTv);
 
 
         give_water_btn.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +146,16 @@ public class FunctionFragment extends Fragment {
         item.setmTimeText(timeText);
 
         mList.add(item);
+    }
+
+    public void updateSensorData(String data) {
+        String[] values = data.split(",");
+        if(values.length == 2) {
+            String temperatureValue = values[0].split(":")[1];
+            String humidityValue = values[1].split(":")[1];
+            temperatureTextView.setText(temperatureValue);
+            humidityTextView.setText(humidityValue);
+        }
     }
 
 
