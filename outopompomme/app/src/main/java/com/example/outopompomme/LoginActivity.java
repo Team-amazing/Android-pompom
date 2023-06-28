@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
                     logIn();
                     break;
                 case R.id.login_passwordresetTv:
-                    myStartActivity(MyinfoActivity.class);
+                    myStartActivity(ChangePwActivity.class);
                     break;
             }
         }
