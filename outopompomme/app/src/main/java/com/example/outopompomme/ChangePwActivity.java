@@ -29,7 +29,7 @@ public class ChangePwActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.myinfo_checkBtn:
+                    case R.id.change_pw_btn:
                         profileUpdate();
                         break;
 
@@ -37,7 +37,7 @@ public class ChangePwActivity extends AppCompatActivity {
             }
         };
 
-        findViewById(R.id.myinfo_checkBtn).setOnClickListener(onClickListener);
+        findViewById(R.id.change_pw_btn).setOnClickListener(onClickListener);
 
 
 
@@ -45,7 +45,7 @@ public class ChangePwActivity extends AppCompatActivity {
 
     private void profileUpdate() {
         //String id = ((EditText) findViewById(R.id.myinfo_idEt)).getText().toString();
-        String email = ((EditText) findViewById(R.id.myinfo_emailEt)).getText().toString();
+        String email = ((EditText) findViewById(R.id.change_pw_email_Et)).getText().toString();
 
         if (email.length() > 0 ) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
