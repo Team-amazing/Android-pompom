@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InfoFragment"
-    android:background="@color/white_gray">
+    android:background="@color/white">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/arrow_left"
-            android:background="@color/white_gray"
+            android:background="@color/white"
             android:layout_marginTop="13dp"
             android:layout_marginLeft="10dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -88,25 +88,18 @@
             app:layout_constraintLeft_toRightOf="@id/ivmyPage"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageButton
-            android:id="@+id/mypage_settingBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/setting"
-            android:background="@color/white_gray"
+        <Button
+            android:id="@+id/mypage_myinfoBtn"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:text="MY"
+            android:textSize="19sp"
+            android:textColor="@color/black"
+            android:background="@drawable/soild_button"
             android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="내 정보"
-            android:textColor="@color/black"
-            android:layout_marginRight="15dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mypage_settingBtn"/>
 
 
 
