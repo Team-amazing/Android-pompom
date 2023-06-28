@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.example.outopompomme.funtion.FunctionFragment;
 import com.example.outopompomme.home.HomeFragment;
+import com.example.outopompomme.home.MyinfoActivity;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if(user == null) {
-            startActivity(MyinfoActivity .class);
+            startActivity(MyinfoActivity.class);
         }else{
             for (UserInfo profile : user.getProviderData()) {
                 // Name, email address, and profile photo Url

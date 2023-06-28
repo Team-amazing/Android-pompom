@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import com.example.outopompomme.DiaryActivity;
 import com.example.outopompomme.LinkarduinoActivity;
 import com.example.outopompomme.MainActivity;
-import com.example.outopompomme.MyinfoActivity;
 import com.example.outopompomme.PlantTypesActivity;
 import com.example.outopompomme.R;
 import com.example.outopompomme.StartActivity;

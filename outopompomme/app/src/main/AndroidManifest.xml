@@ -29,7 +29,7 @@
             android:name=".LinkarduinoActivity"
             android:exported="false" />
         <activity
-            android:name=".MyinfoActivity"
+            android:name=".home.MyinfoActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
