@@ -47,7 +47,7 @@
             android:name=".StartActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".signup.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".DiaryActivity"
