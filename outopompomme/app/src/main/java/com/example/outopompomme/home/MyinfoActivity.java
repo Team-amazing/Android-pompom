@@ -4,6 +4,7 @@ package com.example.outopompomme.home;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,14 +52,14 @@ public class MyinfoActivity extends AppCompatActivity {
     }
 
     private void profileUpdate() {
-        String id = ((EditText) findViewById(R.id.myinfo_idEt)).getText().toString();
-        String password = ((EditText) findViewById(R.id.login_password)).getText().toString();
+        //String id = ((EditText) findViewById(R.id.myinfo_idEt)).getText().toString();
+        String email = ((EditText) findViewById(R.id.myinfo_emailEt)).getText().toString();
 
-        if (id.length() > 0 ) {
+        if (email.length() > 0 ) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(id)
+                    .setDisplayName(email)
                     .build();
             if(user != null){
                 user.updateProfile(profileUpdates)
@@ -72,6 +73,7 @@ public class MyinfoActivity extends AppCompatActivity {
                             }
                         });
             }
+            startToast("이메일이 일치하지 않습니다.");
 
         } else {
             startToast("회원 정보를 입력해주세요");
