@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.example.outopompomme.LoginActivity;
 import com.example.outopompomme.MainActivity;
 import com.example.outopompomme.R;
+import com.example.outopompomme.first.UserInfoActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -55,7 +57,8 @@ public class SignUpActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.signupBtn:
-                    signUp();
+
+                    //signUp();
                     break;
             }
         }
@@ -77,7 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     strtToast("회원가입이 성공적으로 되었습니다.");
-                                    myStartActivity(MainActivity.class);
+                                    myStartActivity(UserInfoActivity.class);
 
 
                                 } else {

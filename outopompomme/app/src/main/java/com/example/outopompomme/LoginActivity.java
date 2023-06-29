@@ -2,6 +2,7 @@ package com.example.outopompomme;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.outopompomme.first.UserInfoActivity;
 import com.example.outopompomme.home.MyinfoActivity;
 import com.example.outopompomme.signup.SignUpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -70,7 +72,9 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 startToast("로그인에 성공했습니다.");
-                                myStartActivity(MainActivity.class);
+                                myStartActivity(UserInfoActivity.class);
+                                Log.d("TEST","인");
+                                //myStartActivity(MainActivity.class);
                             } else {
                                 if (task.getException() != null) {
                                     startToast(task.getException().toString());
