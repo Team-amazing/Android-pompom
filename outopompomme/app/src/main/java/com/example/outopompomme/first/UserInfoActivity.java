@@ -6,72 +6,63 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.outopompomme.LoginActivity;
 import com.example.outopompomme.R;
 
 import java.util.ArrayList;
 
 public class UserInfoActivity extends AppCompatActivity {
-
-    ViewPager2 pager;
+    private FrameLayout fragmentContainer;
+    private int currentPage = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
-        pager = findViewById(R.id.pager);
+        fragmentContainer = findViewById(R.id.fragment_container);
 
-        pager.setOffscreenPageLimit(2);
-
-        MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
-
-        First1Fragment first1Fragment = new First1Fragment();
-        adapter.additem(first1Fragment);
-
-        First2Fragment first2Fragment = new First2Fragment();
-        adapter.additem(first2Fragment);
-
-        pager.setAdapter(adapter);
+        showNextFragment();
     }
 
-    class MyPagerAdapter extends FragmentStatePagerAdapter{
-
-        ArrayList<Fragment> items = new ArrayList<Fragment>();
-
-        public MyPagerAdapter(FragmentManager fm){
-            super(fm);
+    public void showNextFragment() {
+        Log.d("TEST","화면 전환 전");
+        Fragment fragment;
+        switch (currentPage) {
+            case 1:
+                Log.d("TEST","화면 인");
+                fragment = new First1Fragment();
+                Log.d("TEST","화면 진짜 인");
+                break;
+            case 2:
+                fragment = new First2Fragment();
+                break;
+            default:
+                navigateToMainActivity();
+                return;
         }
 
-        public void additem(Fragment item){
-            items.add(item);
-        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
+    }
 
-        @NonNull
-        @Override
-        public Fragment getItem(int position) {
-            return items.get(position);
-        }
-
-        @Override
-        public int getCount(){
-            return items.size();
-        }
-
-        @NonNull
-        @Override
-        public CharSequence getPageTitle(int position){
-            return "페이지"+position;
-        }
+    private void navigateToMainActivity() {
+        finish();
     }
 }
