@@ -12,13 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.outopompomme.R;
 
 
 public class First1Fragment extends Fragment {
     private EditText usernikname;
-    private Button nextBtn;
+    private ImageButton nextBtn;
 
 
 
@@ -35,13 +36,10 @@ public class First1Fragment extends Fragment {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ((UserInfoActivity) requireActivity()).showNextFragment();
+                ((UserInfoActivity) requireActivity()).showNextFragment(2);
             }
         });
-
+        Log.d("TEST","프래그먼트 끝");
         return view;
-
-
     }
 }
