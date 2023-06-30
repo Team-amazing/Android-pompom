@@ -5,47 +5,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".home.MyinfoActivity"
-    android:background="@color/white_gray">
-
+    android:background="@color/white">
 
     <TextView
-        android:id="@+id/myinfoTv"
+        android:id="@+id/change_pw_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="비밀번호 재설정"
-        android:textSize="30sp"
-        android:layout_marginTop="100dp"
+        android:text="내 정보"
         android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-
-
-    <EditText
-        android:id="@+id/myinfo_emailEt"
-        android:layout_width="300dp"
+    <ImageButton
+        android:id="@+id/myinfo_back"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="이메일"
-        android:textColorHint="@color/gray"
-        android:backgroundTint="@color/gray"
-        android:textColor="@color/black"
-        android:layout_marginTop="100dp"
+        android:src="@drawable/arrow_left"
+        android:background="@color/white"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/myinfo_iv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="60dp"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myinfoTv"/>
+        app:layout_constraintTop_toBottomOf="@+id/change_pw_tv" />
 
     <Button
-        android:id="@+id/myinfo_checkBtn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="확인"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"
-        android:background="@color/green"
+        android:id="@+id/myinfo_image_select_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="사진 선택"
+        android:background="@drawable/soild_button"
+        android:backgroundTint="@color/green"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myinfo_emailEt"/>
+        app:layout_constraintTop_toBottomOf="@id/myinfo_iv"/>
+
+    <TextView
+        android:id="@+id/myinfo_image_del_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사진 삭제"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myinfo_image_select_btn"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임"
+        android:textSize="17sp"
+        android:textColor="@color/gray"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myinfo_image_del_tv"/>
+
+
+
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

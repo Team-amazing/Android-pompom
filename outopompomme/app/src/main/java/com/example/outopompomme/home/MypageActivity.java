@@ -1,16 +1,13 @@
 package com.example.outopompomme.home;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
 import com.example.outopompomme.DiaryActivity;
 import com.example.outopompomme.LinkarduinoActivity;
-import com.example.outopompomme.MainActivity;
 import com.example.outopompomme.PlantTypesActivity;
 import com.example.outopompomme.R;
 import com.example.outopompomme.StartActivity;
@@ -31,7 +28,7 @@ public class MypageActivity extends AppCompatActivity {
 
         findViewById(R.id.mypage_logoutBtn).setOnClickListener(onClickListener);
 
-        ImageButton mypage_settingBtn = findViewById(R.id.mypage_settingBtn);
+        Button mypage_myinfoBtn = findViewById(R.id.mypage_myinfoBtn);
 
         ImageButton mypage_backkey = findViewById(R.id.mypage_backkey);
 
@@ -62,7 +59,7 @@ public class MypageActivity extends AppCompatActivity {
             }
         });
 
-        mypage_settingBtn.setOnClickListener(new View.OnClickListener() {
+        mypage_myinfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MypageActivity.this, MyinfoActivity.class);
@@ -73,8 +70,7 @@ public class MypageActivity extends AppCompatActivity {
         mypage_backkey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MypageActivity.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

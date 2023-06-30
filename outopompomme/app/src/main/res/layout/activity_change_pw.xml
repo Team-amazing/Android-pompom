@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ChangePwActivity">
+
+    <TextView
+        android:id="@+id/change_pw_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호 재설정"
+        android:textSize="30sp"
+        android:layout_marginTop="100dp"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    <EditText
+        android:id="@+id/change_pw_email_Et"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="이메일"
+        android:textColorHint="@color/gray"
+        android:backgroundTint="@color/gray"
+        android:textColor="@color/black"
+        android:layout_marginTop="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/change_pw_tv"/>
+
+    <Button
+        android:id="@+id/change_pw_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="확인"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:background="@color/green"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/change_pw_email_Et"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

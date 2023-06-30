@@ -57,8 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.signupBtn:
-
-                    //signUp();
+                    signUp();
                     break;
             }
         }
