@@ -27,7 +27,11 @@ import java.util.ArrayList;
 
 public class UserInfoActivity extends AppCompatActivity {
     private FrameLayout fragmentContainer;
-    private int currentPage = 1;
+
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+
+    private Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +40,14 @@ public class UserInfoActivity extends AppCompatActivity {
 
         fragmentContainer = findViewById(R.id.fragment_container);
 
-        showNextFragment();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        showNextFragment(1);
     }
 
-    public void showNextFragment() {
+    public void showNextFragment(int currentPage) {
         Log.d("TEST","화면 전환 전");
-        Fragment fragment;
         switch (currentPage) {
             case 1:
                 Log.d("TEST","화면 인");
@@ -49,15 +55,14 @@ public class UserInfoActivity extends AppCompatActivity {
                 Log.d("TEST","화면 진짜 인");
                 break;
             case 2:
+                Log.d("TEST","두번재 화면 인");
                 fragment = new First2Fragment();
                 break;
             default:
                 navigateToMainActivity();
                 return;
         }
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
     }
