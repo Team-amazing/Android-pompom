@@ -1,4 +1,4 @@
-package com.example.outopompomme;
+package com.example.outopompomme.first;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.outopompomme.R;
 import com.example.outopompomme.signup.SignUpActivity;
 
 public class StartActivity extends AppCompatActivity {
@@ -26,7 +27,6 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(StartActivity.this, SignUpActivity.class);
                 startActivity(intent);
-
 
             }
         });

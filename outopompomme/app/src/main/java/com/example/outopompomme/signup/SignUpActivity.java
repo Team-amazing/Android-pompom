@@ -9,10 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.example.outopompomme.LoginActivity;
-import com.example.outopompomme.MainActivity;
 import com.example.outopompomme.R;
+import com.example.outopompomme.first.LoginActivity;
 import com.example.outopompomme.first.UserInfoActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

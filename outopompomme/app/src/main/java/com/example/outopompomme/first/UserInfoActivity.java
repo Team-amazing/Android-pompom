@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -20,7 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.outopompomme.LoginActivity;
+import com.example.outopompomme.MainActivity;
 import com.example.outopompomme.R;
 
 import java.util.ArrayList;
@@ -58,6 +59,12 @@ public class UserInfoActivity extends AppCompatActivity {
                 Log.d("TEST","두번재 화면 인");
                 fragment = new First2Fragment();
                 break;
+            case 3:
+                fragment = new First3Fragment();
+                break;
+            case 4:
+                Intent intent = new Intent(UserInfoActivity.this, MainActivity.class);
+                startActivity(intent);
             default:
                 navigateToMainActivity();
                 return;

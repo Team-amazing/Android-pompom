@@ -1,4 +1,4 @@
-package com.example.outopompomme;
+package com.example.outopompomme.first;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.outopompomme.ChangePwActivity;
+import com.example.outopompomme.R;
 import com.example.outopompomme.first.UserInfoActivity;
 import com.example.outopompomme.home.MyinfoActivity;
 import com.example.outopompomme.signup.SignUpActivity;
@@ -72,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 startToast("로그인에 성공했습니다.");
-                                myStartActivity(UserInfoActivity.class);
+                                //myStartActivity(UserInfoActivity.class);
                                 Log.d("TEST","인");
                                 //myStartActivity(MainActivity.class);
                             } else {

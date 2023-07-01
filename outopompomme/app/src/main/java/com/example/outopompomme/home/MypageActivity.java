@@ -10,7 +10,7 @@ import com.example.outopompomme.DiaryActivity;
 import com.example.outopompomme.LinkarduinoActivity;
 import com.example.outopompomme.PlantTypesActivity;
 import com.example.outopompomme.R;
-import com.example.outopompomme.StartActivity;
+import com.example.outopompomme.first.StartActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MypageActivity extends AppCompatActivity {
