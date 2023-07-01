@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.outopompomme.first.StartActivity;
+import com.example.outopompomme.first.UserInfoActivity;
 import com.example.outopompomme.funtion.FunctionFragment;
 import com.example.outopompomme.home.HomeFragment;
 import com.example.outopompomme.home.MyinfoActivity;
@@ -37,9 +38,14 @@ public class MainActivity extends AppCompatActivity {
         }else{
             for (UserInfo profile : user.getProviderData()) {
                 // Name, email address, and profile photo Url
-                String name = profile.getDisplayName();
+                //String name = profile.getDisplayName();
                 String email = profile.getEmail();
                 Uri photoUrl = profile.getPhotoUrl();
+
+                String nickname = profile.getDisplayName();
+                if(nickname == null){
+                    myStartActivity(UserInfoActivity.class);
+                }
             }
 
         }
@@ -80,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void startActivity(Class<MyinfoActivity> myinfoActivityClass) {
         Intent intent = new Intent(MainActivity.this, StartActivity.class);
+        startActivity(intent);
+    }
+
+    private void myStartActivity(Class c){
+        Intent intent = new Intent(this,c);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
