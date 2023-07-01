@@ -43,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
                 Uri photoUrl = profile.getPhotoUrl();
 
                 String nickname = profile.getDisplayName();
-                if(nickname == null){
-                    myStartActivity(UserInfoActivity.class);
+                if(nickname!= null){
+                    if(nickname.length() == 0){
+                        myStartActivity(UserInfoActivity.class);
+                    }
                 }
             }
-
         }
-
 
         homeFragment = new HomeFragment();
         functionFragment = new FunctionFragment();
