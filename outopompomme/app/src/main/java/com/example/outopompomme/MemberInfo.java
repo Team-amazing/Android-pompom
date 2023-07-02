@@ -1,5 +1,7 @@
 package com.example.outopompomme;
 
+import android.widget.EditText;
+
 public class MemberInfo {
     private String nickname;
 
@@ -7,7 +9,7 @@ public class MemberInfo {
         this.nickname = nickname;
     }
 
-    public String getNickname() {
+    public String  getNickname() {
         return this.nickname;
     }
 
