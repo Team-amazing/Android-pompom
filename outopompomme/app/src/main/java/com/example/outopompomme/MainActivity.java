@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.outopompomme.first.StartActivity;
@@ -42,9 +44,12 @@ public class MainActivity extends AppCompatActivity {
                 String email = profile.getEmail();
                 Uri photoUrl = profile.getPhotoUrl();
 
+
                 String nickname = profile.getDisplayName();
-                if(nickname!= null){
+                Log.d("TEST","닉네임 전"+nickname);
+                if(nickname == null){
                     if(nickname.length() == 0){
+                        Log.d("TEST","닉네임"+nickname);
                         myStartActivity(UserInfoActivity.class);
                     }
                 }
