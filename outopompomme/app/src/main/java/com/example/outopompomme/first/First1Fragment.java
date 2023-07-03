@@ -14,10 +14,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.outopompomme.MemberInfo;
 import com.example.outopompomme.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -60,6 +63,7 @@ public class First1Fragment extends Fragment {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
             MemberInfo memberInfo = new MemberInfo(nickname);
+            Log.d("TEST","닉"+nickname);
 
             if (user != null) {
                 db.collection("users").document(user.getUid()).set(memberInfo)
@@ -77,21 +81,22 @@ public class First1Fragment extends Fragment {
                         });
             }
 
-//            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-//                    .setDisplayName(nickname)
-//                    .build();
-//
-//            if(user != null){
-//                user.updateProfile(profileUpdates)
-//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful()) {
-//                                    Log.d(TAG, "User profile updated.");
-//                                }
-//                            }
-//                        });
-//            }
+
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(nickname)
+                    .build();
+
+            if(user != null){
+                user.updateProfile(profileUpdates)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "User profile updated.");
+                                }
+                            }
+                        });
+            }
 
         } else {
             Toast.makeText(this.getContext().getApplicationContext(), "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show();
