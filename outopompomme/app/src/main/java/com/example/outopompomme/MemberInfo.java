@@ -9,7 +9,7 @@ public class MemberInfo {
         this.nickname = nickname;
     }
 
-    public String  getNickname() {
+    public String getNickname() {
         return this.nickname;
     }
 
