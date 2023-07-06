@@ -1,11 +1,15 @@
 package com.example.outopompomme;
 
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.outopompomme.first.StartActivity;
@@ -13,10 +17,15 @@ import com.example.outopompomme.first.UserInfoActivity;
 import com.example.outopompomme.funtion.FunctionFragment;
 import com.example.outopompomme.home.HomeFragment;
 import com.example.outopompomme.home.MyinfoActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,20 +45,42 @@ public class MainActivity extends AppCompatActivity {
         if(user == null) {
             startActivity(MyinfoActivity.class);
         }else{
-            for (UserInfo profile : user.getProviderData()) {
-                // Name, email address, and profile photo Url
-                //String name = profile.getDisplayName();
-                String email = profile.getEmail();
-                Uri photoUrl = profile.getPhotoUrl();
-
-                String nickname = profile.getDisplayName();
-                if(nickname!= null){
-                    if(nickname.length() == 0){
-                        myStartActivity(UserInfoActivity.class);
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference docRef = db.collection("users").document(user.getUid());
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot document = task.getResult();
+                        if(document != null){
+                            if(document.exists()){
+                                if(document.getData() == null){
+                                    myStartActivity(UserInfoActivity.class);
+                                }else {
+                                    Log.d(TAG,"검색 안됨");
+                                }
+                            }
+                        }
                     }
                 }
-            }
+            });
         }
+//            for (UserInfo profile : user.getProviderData()) {
+//                // Name, email address, and profile photo Url
+//                //String name = profile.getDisplayName();
+//                String email = profile.getEmail();
+//                Uri photoUrl = profile.getPhotoUrl();
+//
+//
+//                String nickname = profile.getDisplayName();
+//                Log.d("TEST","닉네임 전"+ nickname);
+//                //Log.d("TEST","닉네임"+nickname.length());
+//                if(nickname == null){
+//                    Log.d("TEST","닉네임"+nickname);
+//                    myStartActivity(UserInfoActivity.class);
+//                }
+//            }
+//        }
 
         homeFragment = new HomeFragment();
         functionFragment = new FunctionFragment();

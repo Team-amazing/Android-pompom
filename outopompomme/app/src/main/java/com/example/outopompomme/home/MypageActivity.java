@@ -3,15 +3,20 @@ package com.example.outopompomme.home;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import com.example.outopompomme.DiaryActivity;
 import com.example.outopompomme.LinkarduinoActivity;
 import com.example.outopompomme.PlantTypesActivity;
 import com.example.outopompomme.R;
 import com.example.outopompomme.first.StartActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 
 public class MypageActivity extends AppCompatActivity {
 
@@ -31,6 +36,8 @@ public class MypageActivity extends AppCompatActivity {
         Button mypage_myinfoBtn = findViewById(R.id.mypage_myinfoBtn);
 
         ImageButton mypage_backkey = findViewById(R.id.mypage_backkey);
+
+        TextView nicknameTv = findViewById(R.id.mypage_nickname_tv);
 
 
 
@@ -73,6 +80,15 @@ public class MypageActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        for (UserInfo profile : user.getProviderData()){
+            String nickname = profile.getDisplayName();
+            nicknameTv.setText(nickname);
+            Log.d("TEST","닉네임"+nickname);
+        }
+
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {

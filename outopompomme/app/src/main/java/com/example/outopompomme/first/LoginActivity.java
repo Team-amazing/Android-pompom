@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.outopompomme.ChangePwActivity;
+import com.example.outopompomme.MainActivity;
 import com.example.outopompomme.R;
 import com.example.outopompomme.first.UserInfoActivity;
 import com.example.outopompomme.home.MyinfoActivity;
@@ -76,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startToast("로그인에 성공했습니다.");
                                 //myStartActivity(UserInfoActivity.class);
                                 Log.d("TEST","인");
-                                //myStartActivity(MainActivity.class);
+                                myStartActivity(MainActivity.class);
                             } else {
                                 if (task.getException() != null) {
                                     startToast(task.getException().toString());
