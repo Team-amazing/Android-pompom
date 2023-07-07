@@ -39,6 +39,8 @@ public class MypageActivity extends AppCompatActivity {
 
         TextView nicknameTv = findViewById(R.id.mypage_nickname_tv);
 
+        TextView emailTv = findViewById(R.id.mypage_email_tv);
+
 
 
         mypage_daiary_btn.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +87,10 @@ public class MypageActivity extends AppCompatActivity {
 
         for (UserInfo profile : user.getProviderData()){
             String nickname = profile.getDisplayName();
+            String email = profile.getEmail();
             nicknameTv.setText(nickname);
+            emailTv.setText(email);
+
             Log.d("TEST","닉네임"+nickname);
         }
 
