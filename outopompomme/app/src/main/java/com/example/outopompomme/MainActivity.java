@@ -41,12 +41,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.d("TEST","전");
 
         if(user == null) {
             startActivity(MyinfoActivity.class);
+            Log.d("TEST","Myinfo");
         }else{
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference docRef = db.collection("users").document(user.getUid());
+            //myStartActivity(UserInfoActivity.class);  //삭제
+
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
