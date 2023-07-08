@@ -57,13 +57,15 @@ public class First1Fragment extends Fragment {
     private void inputnickname() {
         EditText nicknameEt = getView().findViewById(R.id.fragment1_nikname_et);
         String nickname = nicknameEt.getText().toString();
+        Log.d("TEST","닉 전"+nicknameEt);
+        Log.d("TEST","닉"+nickname);
 
         if (nickname.length() > 0) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
             MemberInfo memberInfo = new MemberInfo(nickname);
-            Log.d("TEST","닉"+nickname);
+            Log.d("TEST","닉 후"+nickname);
 
             if (user != null) {
                 db.collection("users").document(user.getUid()).set(memberInfo)

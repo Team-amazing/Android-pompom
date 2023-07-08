@@ -55,12 +55,12 @@
         app:layout_constraintTop_toBottomOf="@+id/mypage_linear1"
         tools:ignore="MissingConstraints">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivmyPage"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:background="?attr/selectableItemBackground"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/default_image_profile"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,6 +79,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
+            android:id="@+id/mypage_email_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이메일"
@@ -154,7 +155,8 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="로그아웃"
-        android:background="@color/red"
+        android:background="@drawable/radious"
+        android:backgroundTint="@color/red"
         android:layout_marginBottom="40dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

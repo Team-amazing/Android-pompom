@@ -2,11 +2,13 @@ package com.example.outopompomme.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.outopompomme.DiaryActivity;
@@ -38,6 +40,10 @@ public class MypageActivity extends AppCompatActivity {
         ImageButton mypage_backkey = findViewById(R.id.mypage_backkey);
 
         TextView nicknameTv = findViewById(R.id.mypage_nickname_tv);
+
+        TextView emailTv = findViewById(R.id.mypage_email_tv);
+
+        ImageView imageView = findViewById(R.id.ivmyPage);
 
 
 
@@ -85,7 +91,13 @@ public class MypageActivity extends AppCompatActivity {
 
         for (UserInfo profile : user.getProviderData()){
             String nickname = profile.getDisplayName();
+            String email = profile.getEmail();
+            Uri photoUrl = profile.getPhotoUrl();
+
             nicknameTv.setText(nickname);
+            emailTv.setText(email);
+            imageView.setImageURI(photoUrl);
+
             Log.d("TEST","닉네임"+nickname);
         }
 
