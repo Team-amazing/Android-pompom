@@ -25,14 +25,19 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.outopompomme.R;
 import com.example.outopompomme.databinding.ActivityMyinfoBinding;
 import com.example.outopompomme.databinding.ActivityUserInfoBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -47,6 +52,10 @@ public class MyinfoActivity extends AppCompatActivity {
     private static final int GALLERY_REQUEST_CODE = 1;
     ActivityMyinfoBinding binding;
 
+    private final int GALLERY_CODE = 10;
+    ImageView photo;
+    private FirebaseStorage firebaseStorage;
+
 
 
     @Override
@@ -57,6 +66,7 @@ public class MyinfoActivity extends AppCompatActivity {
         Button selectBtn = findViewById(R.id.myinfo_image_select_btn);
         EditText userNickname = findViewById(R.id.myinfo_id_et);
         EditText userEmmail = findViewById(R.id.myinfo_email_et);
+        ImageView userImage = findViewById(R.id.myinfo_iv);
         ImageButton backKey = findViewById(R.id.myinfo_back);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -76,6 +86,7 @@ public class MyinfoActivity extends AppCompatActivity {
 
             userNickname.setText(name);
             userEmmail.setText(email);
+            userImage.setImageURI(photoUrl);
         }
 
         backKey.setOnClickListener(new View.OnClickListener() {
@@ -103,21 +114,50 @@ public class MyinfoActivity extends AppCompatActivity {
         Log.d("TEST","이미지 전");
         Log.d("TEST","resultcide"+resultCode+","+GALLERY_REQUEST_CODE);
 
-        if(requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            String[] filePathColum = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(uri,filePathColum,null,null,null);
-            cursor.moveToFirst();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Uri photoUrl = user.getPhotoUrl();
+        Log.d("TEST","사진 정보"+photoUrl);
 
-            int columnIndex = cursor.getColumnIndex(filePathColum[0]);
-            String imagePath = cursor.getString(columnIndex);
-            cursor.close();
+        ImageView imageView = findViewById(R.id.myinfo_iv);
 
-            ImageView imageView = findViewById(R.id.myinfo_iv);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(imagePath));
-            Log.d("TEST","이미지");
+        if(photoUrl == null){
 
+            if(requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+                Uri uri = data.getData();
+                String[] filePathColum = {MediaStore.Images.Media.DATA};
+                Cursor cursor = getContentResolver().query(uri,filePathColum,null,null,null);
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(filePathColum[0]);
+                String imagePath = cursor.getString(columnIndex);
+                cursor.close();
+
+                imageView.setImageURI(uri);
+                //imageView.setImageBitmap(BitmapFactory.decodeFile(imagePath));
+                Log.d("TEST","이미지"+uri);
+
+
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setPhotoUri(Uri.parse(uri.toString()))
+                        .build();
+
+                user.updateProfile(profileUpdates)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d("TEST", "User profile updated.");
+                                }
+                            }
+                        });
+
+            }
+        }else{
+            imageView.setImageURI(photoUrl);
         }
+
+
+
     }
 
 }
