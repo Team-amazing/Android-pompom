@@ -55,12 +55,12 @@
         app:layout_constraintTop_toBottomOf="@+id/mypage_linear1"
         tools:ignore="MissingConstraints">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivmyPage"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:background="?attr/selectableItemBackground"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/default_image_profile"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
