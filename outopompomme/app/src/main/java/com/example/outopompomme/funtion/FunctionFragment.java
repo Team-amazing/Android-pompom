@@ -48,7 +48,7 @@ public class FunctionFragment extends Fragment {
     private TextView temperatureTv;
     private TextView humidityTv;
 
-    private DatabaseReference mDatabase;
+    private FirebaseDatabase mDatabase;
 
 
 
@@ -121,23 +121,26 @@ public class FunctionFragment extends Fragment {
 
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference myTem = mDatabase.getReference("tem");
 
-        mDatabase.child("sensor").addValueEventListener(new ValueEventListener() {
+        myTem.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Map<String, Object> map = (Map<String, Object>) snapshot.getValue();
-                //String value = snapshot.getValue(String.class);
-                //temperatureTv.setText(map.toString());
-                Log.d("TEST", String.valueOf(map));
+                String temp = snapshot.getValue(String.class);
+                String hum = snapshot.getValue(String.class);
+                Log.d("TEST","온도"+temp);
+                Log.d("TEST","습도"+hum);
+                temperatureTv.setText(temp);
+
 
                 for(DataSnapshot ds : snapshot.getChildren()) {
                     String key = ds.getKey();
-                    String hum = ds.child("hum").getValue(String.class);
-                    String temp = ds.child("tem").getValue(String.class);
 
-                    temperatureTv.setText(temp);
-                    Log.d("TEST","온도"+temp);
+                    //String temp = ds.child("tem").getValue(String.class);
+
+                    //temperatureTv.setText(temp);
+                    //Log.d("TEST","온도"+temp);
                 }
             }
 
