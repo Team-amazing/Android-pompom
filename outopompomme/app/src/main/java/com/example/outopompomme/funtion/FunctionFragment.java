@@ -2,10 +2,12 @@ package com.example.outopompomme.funtion;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,13 +17,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.outopompomme.ApiTest;
 import com.example.outopompomme.R;
-import com.example.outopompomme.RecyclerViewWeatherItem;
-import com.example.outopompomme.WeatherAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 
 import java.text.SimpleDateFormat;
@@ -30,18 +35,22 @@ import java.util.Date;
 
 public class FunctionFragment extends Fragment {
 
-    private ApiTest at;
+    //private ApiTest at;
     private Button give_water_btn;
     private Button light_btn;
     private Button open_door_btn;
     private Button water_box_btn;
 
     private ViewPager2 mViewPager;
-    private ArrayList<RecyclerViewWeatherItem> mList;
-    private WeatherAdapter weatherAdapter;
+    //private ArrayList<RecyclerViewWeatherItem> mList;
+    //private WeatherAdapter weatherAdapter;
 
-    private TextView temperatureTextView;
-    private TextView humidityTextView;
+    private TextView temperatureTv;
+    private TextView humidityTv;
+
+    private DatabaseReference mDatabase;
+
+
 
     public FunctionFragment() {
         // Required empty public constructor
@@ -53,17 +62,17 @@ public class FunctionFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        at = new ApiTest();
-        Executors.newSingleThreadExecutor().execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    at.func();
-                } catch (Throwable e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        //at = new ApiTest();
+//        Executors.newSingleThreadExecutor().execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    at.func();
+//                } catch (Throwable e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,8 +83,8 @@ public class FunctionFragment extends Fragment {
         open_door_btn = rootView.findViewById(R.id.open_door_btn);
         water_box_btn = rootView.findViewById(R.id.watter_box_btn);
 
-        temperatureTextView = rootView.findViewById(R.id.funtion_RealtempTv);
-        humidityTextView = rootView.findViewById(R.id.funtion_real_humTv);
+        temperatureTv = rootView.findViewById(R.id.funtion_RealtempTv);
+        humidityTv = rootView.findViewById(R.id.funtion_real_humTv);
 
 
         give_water_btn.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +118,35 @@ public class FunctionFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mDatabase.child("sensor").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Map<String, Object> map = (Map<String, Object>) snapshot.getValue();
+                //String value = snapshot.getValue(String.class);
+                //temperatureTv.setText(map.toString());
+                Log.d("TEST", String.valueOf(map));
+
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    String key = ds.getKey();
+                    String hum = ds.child("hum").getValue(String.class);
+                    String temp = ds.child("tem").getValue(String.class);
+
+                    temperatureTv.setText(temp);
+                    Log.d("TEST","온도"+temp);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         return rootView;
 
     }
@@ -124,42 +162,42 @@ public class FunctionFragment extends Fragment {
         }
 
         mViewPager = view.findViewById(R.id.viewpager);
-        weatherAdapter = new WeatherAdapter(mList);
-        mViewPager.setAdapter(weatherAdapter);
+        //weatherAdapter = new WeatherAdapter(mList);
+        //mViewPager.setAdapter(weatherAdapter);
         mViewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         //layoutManager.setOrientation(ViewPager2.HORIZONTAL);
         ViewPager2 mviewPager = view.findViewById(R.id.viewpager);
         mviewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-        mviewPager.setAdapter(weatherAdapter);
+        //mviewPager.setAdapter(weatherAdapter);
     }
 
     public void firstTint() {
-        mList = new ArrayList<>();
+        //mList = new ArrayList<>();
     }
 
     public void addItem(String locationText, String imgName, String tempText, String weekText, String timeText) {
-        RecyclerViewWeatherItem item = new RecyclerViewWeatherItem();
+        //RecyclerViewWeatherItem item = new RecyclerViewWeatherItem();
 
-        item.setmLocationText(locationText);
-        item.setmImgName(imgName);
-        item.setmTempText(tempText);
-        item.setmWeekText(weekText);
-        item.setmTimeText(timeText);
-
-        mList.add(item);
+//        item.setmLocationText(locationText);
+//        item.setmImgName(imgName);
+//        item.setmTempText(tempText);
+//        item.setmWeekText(weekText);
+//        item.setmTimeText(timeText);
+//
+//        mList.add(item);
     }
 
-    public void updateSensorData(String data) {
-        String[] values = data.split(",");
-        if(values.length == 2) {
-            String temperatureValue = values[0].split(":")[1];
-            String humidityValue = values[1].split(":")[1];
-            temperatureTextView.setText(temperatureValue);
-            humidityTextView.setText(humidityValue);
-        }
-    }
+//    public void updateSensorData(String data) {
+//        String[] values = data.split(",");
+//        if(values.length == 2) {
+//            String temperatureValue = values[0].split(":")[1];
+//            String humidityValue = values[1].split(":")[1];
+//            temperatureTextView.setText(temperatureValue);
+//            humidityTextView.setText(humidityValue);
+//        }
+//    }
 
 
 
